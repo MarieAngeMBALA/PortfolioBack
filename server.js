@@ -3,6 +3,7 @@ const cors = require('.pnpm/cors@2.8.5/node_modules/cors');
 const PORT = process.env.PORT || 3000;
 const authentif = require('./middleware/authMiddleware');
 const userRoute = require('./routes/userRoute');
+const projectRoute = require('./routes/projectRoute');
 const connectDB = require('./config/database');
 
 connectDB();
@@ -15,8 +16,11 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.use('/api/projects', projectRoute);
 app.use('/api/users', userRoute);
 app.use(authentif);
+
+
 
 app.get('/', (req,res)=>{
     res.send('Hello Word');
