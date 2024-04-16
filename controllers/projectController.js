@@ -49,4 +49,36 @@ exports.deleteProject = async (req, res) => {
       });
     }
   };
+
+  exports.updateProject = async (req, res) => {
+    try {
+      const { id } = req.params; // L'ID du projet à mettre à jour est obtenu à partir des paramètres de l'URL
+      const updateData = req.body; // Les données à mettre à jour sont récupérées du corps de la requête
+  
+      // Mise à jour du projet dans la base de données
+      const updatedProject = await Project.findByIdAndUpdate(id, updateData, {
+        new: true, // Retourne le document mis à jour
+        runValidators: true // Assure que les validations du schéma sont appliquées lors de la mise à jour
+      });
+  
+      if (!updatedProject) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Project not found'
+        });
+      }
+  
+      res.status(200).json({
+        status: 'success',
+        data: {
+          project: updatedProject
+        }
+      });
+    } catch (error) {
+      res.status(400).json({
+        status: 'error',
+        message: error.message
+      });
+    }
+  };
   
