@@ -27,6 +27,33 @@ exports.getAllProjects = async (req, res) => {
   }
 };
 
+exports.getProjectById = async (req, res) => {
+    try {
+      const { id } = req.params; // Récupération de l'ID du projet depuis les paramètres de l'URL
+      const project = await Project.findById(id);
+  
+      if (!project) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Project not found'
+        });
+      }
+  
+      res.status(200).json({
+        status: 'success',
+        data: {
+          project: project
+        }
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 'error',
+        message: 'Failed to retrieve project',
+        error: error.message
+      });
+    }
+  };
+
 exports.deleteProject = async (req, res) => {
     try {
       const { id } = req.params; // L'ID du projet à supprimer est obtenu à partir des paramètres de l'URL
@@ -78,6 +105,24 @@ exports.deleteProject = async (req, res) => {
       res.status(400).json({
         status: 'error',
         message: error.message
+      });
+    }
+  };
+
+  exports.countProjects = async (req, res) => {
+    try {
+      const count = await Project.countDocuments(); 
+      res.status(200).json({
+        status: 'success',
+        data: {
+          count: count
+        }
+      });
+    } catch (error) {
+      res.status(500).json({
+        status: 'error',
+        message: 'Failed to count projects',
+        error: error.message
       });
     }
   };
