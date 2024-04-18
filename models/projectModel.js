@@ -14,6 +14,9 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true 
   },
+  keywords: {
+    type: String,
+  },
   images: [{
     type: String
   }],
