@@ -28,7 +28,7 @@ const skillsKeywords = {
     embeddedSystem: 
     ["microcontroller", "firmware", "RTOS", "embedded Linux", "Arduino", "Raspberry Pi", "IoT",
     "sensor", "actuator", "robotics", "CAN bus", "Modbus", "I2C", "SPI", "UART", "FPGA",
-    "ARM Cortex", "PLC", "SCADA", "fieldbus", "industrial PC", "real-time computing", "embedded software",
+    "ARM", "PLC", "SCADA", "fieldbus", "industrial PC", "real-time computing", "embedded software",
     "signal processing", "embedded networking", "safety-critical systems", "wireless communication",
     "energy management", "hardware integration", "RTOS-ThreadX", "VxWorks", "embedded debugging"]
   };
