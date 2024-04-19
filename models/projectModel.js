@@ -18,8 +18,10 @@ const projectSchema = new mongoose.Schema({
     type: String,
   },
   images: [{
-    type: String
+    data: Buffer,
+    contentType: String
   }],
+  
   status: {
     type: String,
     enum: ['active', 'inactive'], 
